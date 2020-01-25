@@ -1,4 +1,7 @@
 window._ = require('lodash');
+require('bootstrap-saas');
+require('noty');
+
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
