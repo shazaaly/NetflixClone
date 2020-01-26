@@ -3,7 +3,7 @@
 //RoteForDashboard
 Route::prefix('dashboard')
 ->name('dashboard.')
-->middleware(['auth','role:super_admin|admin'])
+->middleware(['auth','role:Super_admin|admin'])
 ->group(function(){
 
 //make route dashboard.welcome

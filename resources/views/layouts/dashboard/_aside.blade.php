@@ -3,6 +3,7 @@
       <div class="app-sidebar__user">
         <div>
           <p class="app-sidebar__user-name">{{auth()->user()->name}}</p>
+          <p class="app-sidebar__user-name">{{implode(',', auth()->user()->roles->pluck('name')->toArray())}}</p>
           {{-- <p class="app-sidebar__user-designation">{{auth()->user()->role}}</p> --}}
         </div>
       </div>

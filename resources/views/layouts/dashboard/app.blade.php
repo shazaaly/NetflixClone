@@ -22,6 +22,7 @@
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
     {{-- noty js --}}
     <link rel="stylesheet" type="text/css" href="{{asset('dashboard_files/plugins/noty/noty.css')}}">
     <script src="{{asset('dashboard_files/plugins/noty/noty.min.js')}}"></script>
@@ -45,11 +46,11 @@
 
 
     <!-- Essential javascripts for application to work-->
+    <script src="{{asset('dashboard_files/js/main.js')}}"></script>
     <script src="{{asset('dashboard_files/js/jquery-3.3.1.min.js')}}"></script>
     <script src="{{asset('dashboard_files/js/popper.min.js')}}"></script>
     <script src="{{asset('dashboard_files/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('dashboard_files/js/main.js')}}"></script>
-    <script>  //not working noty confirm on delete:
+    <script>
         $(document).ready(function(){
             $(document).on('click','.delete', function(e){
                 e.preventDefault();
@@ -69,13 +70,13 @@
                 })  //end of var n
                 n.show();
             });  //end of onclick
+
+       /* $('.select2').select2();*/
+      /* $('.selectpicker').selectpicker();*/
+
+
         });  //end of ready fn
     </script>
 
-
-
-
-
-
-  </body>
+      </body>
 </html>

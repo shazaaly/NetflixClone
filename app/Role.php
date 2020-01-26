@@ -6,7 +6,10 @@ use Laratrust\Models\LaratrustRole;
 
 class Role extends LaratrustRole
 {
-   // protected $fillable =['name'];
+   protected $fillable =['name'];
+
+
+   //Scopes://
 
    public function scopeWhenSearch($query, $search)
     {
@@ -16,12 +19,24 @@ class Role extends LaratrustRole
 
     } //end of scopeWhenSearch
 
+    public function scopeWhereRoleNot($query, $role_name){
+        return $query->whereNotIn('name', (array)$role_name);
+
+
+
+
+    }  //end of scopeWhereRoleNot
+
 
     public function getNameAttribute($value){
 
         return ucfirst($value);
 
     }   // end of getNameAttribute
+
+
+
+
 
 
 

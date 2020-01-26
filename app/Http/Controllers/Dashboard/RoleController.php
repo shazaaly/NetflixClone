@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\RoleRequest;
+
 use App\Role;
 
 class RoleController extends Controller
@@ -13,7 +15,7 @@ class RoleController extends Controller
     {
         //
 
-        $roles= Role::whenSearch(request()->search)->paginate(3);
+        $roles= Role::whereRoleNot(['super_admin'])->whenSearch(request()->search)->paginate(3);
         return view('dashboard.roles.index', compact('roles'));
     }  //end of ndexi
 
@@ -37,8 +39,8 @@ class RoleController extends Controller
     public function store(RoleRequest $request)
     {
         //
-
-        Role::create($request->all());
+        $role = Role::create($request->all());
+        $role->attachPermissions($request->permissions);
         session()->flash('success','Data added successfully');
         return redirect()->route('dashboard.roles.index');
 
