@@ -3,28 +3,18 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
-
-
 use Illuminate\Http\Request;
+use App\Role;
 
-
-use App\Category;
-use Illuminate\Http\Response;
-
-class CategoryController extends Controller
+class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
+    //
     public function index()
     {
         //
 
-        $categories= Category::whenSearch(request()->search)->paginate(3);
-        return view('dashboard.categories.index', compact('categories'));
+        $roles= Role::whenSearch(request()->search)->paginate(3);
+        return view('dashboard.roles.index', compact('roles'));
     }  //end of ndexi
 
     /**
@@ -35,7 +25,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
-        return view('dashboard.categories.create');
+        return view('dashboard.roles.create');
     }   //end of create
 
     /**
@@ -44,13 +34,13 @@ class CategoryController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(CategoryRequest $request)
+    public function store(RoleRequest $request)
     {
         //
 
-        Category::create($request->all());
+        Role::create($request->all());
         session()->flash('success','Data added successfully');
-        return redirect()->route('dashboard.categories.index');
+        return redirect()->route('dashboard.roles.index');
 
     }  //end of store
 
@@ -71,10 +61,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function edit(Category $category)
+    public function edit(Role $role)
     {
         //
-        return view('dashboard.categories.edit', compact('category'));
+        return view('dashboard.roles.edit', compact('role'));
     }   //end of edit
 
     /**
@@ -84,17 +74,17 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Role $role)
     {
         $request->validate([
             'Name'=>'required'
        ]);
 
 
-        $category->name = $request->Name;
-        $category->save();
+        $role->name = $request->Name;
+        $role->save();
        session()->flash('success','Data updated successfully');
-        return redirect()->route('dashboard.categories.index');
+        return redirect()->route('dashboard.roles.index');
     }  //end of updats
     /**
      * Remove the specified resource from storage.
@@ -102,12 +92,13 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function destroy(Category $category)
+    public function destroy(Role $role)
     {
         //
 
-        $category->delete();
+        $role->delete();
         session()->flash('success','Record deleted');
-        return redirect()->route('dashboard.categories.index')->with('success', 'Product Deleted');
+        return redirect()->route('dashboard.roles.index')->with('success', 'Product Deleted');
     }   //end of destroy
-}
+
+}  //end of Role Controller
